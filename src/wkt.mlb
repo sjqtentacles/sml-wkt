@@ -1,0 +1,10 @@
+(* MLB for the sml-wkt library: the vendored sml-geo sources (which
+ * transitively bring in sml-json and sml-parsec) plus the WKT
+ * parser/serializer sources. Consumers reference this file.
+ *
+ * The dependency .mlb is brought in WITHOUT a `local` wrapper so that
+ * consumers (the test suite, examples) can name `GeoJson` alongside `Wkt`. *)
+$(SML_LIB)/basis/basis.mlb
+../lib/github.com/sjqtentacles/sml-geo/sources.mlb
+wkt.sig
+wkt.sml

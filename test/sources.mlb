@@ -1,0 +1,18 @@
+(* Test executable basis: the wkt library (which pulls in the vendored
+   sml-geo, and transitively sml-json + sml-parsec) plus the harness,
+   helpers, and per-geometry suites. *)
+$(SML_LIB)/basis/basis.mlb
+
+../src/wkt.mlb
+
+harness.sml
+support.sml
+test_point.sml
+test_linestring.sml
+test_polygon.sml
+test_multi.sml
+test_collection.sml
+test_roundtrip.sml
+test_malformed.sml
+entry.sml
+main.sml
