@@ -215,21 +215,35 @@ WKT, and render the same value as GeoJSON (vendored sml-geo).
 
   input : POINT (30 10)
   wkt   : POINT (30 10)
-  geojson: {"type":"Point","coordinates":[30,10]}
+  geojson: {"type":"Point","coordinates":[30.0,10.0]}
 
   input : LINESTRING (30 10, 10 30, 40 40)
   wkt   : LINESTRING (30 10, 10 30, 40 40)
-  geojson: {"type":"LineString","coordinates":[[30,10],[10,30],[40,40]]}
+  geojson: {"type":"LineString","coordinates":[[30.0,10.0],[10.0,30.0],[40.0,40.0]]}
+
+  input : POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10), (20 30, 35 35, 30 20, 20 30))
+  wkt   : POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10), (20 30, 35 35, 30 20, 20 30))
+  geojson: {"type":"Polygon","coordinates":[[[35.0,10.0],[45.0,45.0],[15.0,40.0],[10.0,20.0],[35.0,10.0]],[[20.0,30.0],[35.0,35.0],[30.0,20.0],[20.0,30.0]]]}
 
   input : MULTIPOINT (10 40, 40 30, 20 20, 30 10)
   wkt   : MULTIPOINT ((10 40), (40 30), (20 20), (30 10))
-  geojson: {"type":"MultiPoint","coordinates":[[10,40],[40,30],[20,20],[30,10]]}
+  geojson: {"type":"MultiPoint","coordinates":[[10.0,40.0],[40.0,30.0],[20.0,20.0],[30.0,10.0]]}
 
-  ...
+  input : MULTIPOLYGON (((30 20, 45 40, 10 40, 30 20)), ((15 5, 40 10, 10 20, 5 10, 15 5)))
+  wkt   : MULTIPOLYGON (((30 20, 45 40, 10 40, 30 20)), ((15 5, 40 10, 10 20, 5 10, 15 5)))
+  geojson: {"type":"MultiPolygon","coordinates":[[[[30.0,20.0],[45.0,40.0],[10.0,40.0],[30.0,20.0]]],[[[15.0,5.0],[40.0,10.0],[10.0,20.0],[5.0,10.0],[15.0,5.0]]]]}
+
+  input : GEOMETRYCOLLECTION (POINT (40 10), LINESTRING (10 10, 20 20, 10 40))
+  wkt   : GEOMETRYCOLLECTION (POINT (40 10), LINESTRING (10 10, 20 20, 10 40))
+  geojson: {"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[40.0,10.0]},{"type":"LineString","coordinates":[[10.0,10.0],[20.0,20.0],[10.0,40.0]]}]}
 
   input : POINT EMPTY
   wkt   : POINT EMPTY
   geojson: {"type":"Point","coordinates":[]}
+
+Round-trip a hand-built MultiLineString:
+  serialized : MULTILINESTRING ((0 0, 1 1.5), (2 2, 3.25 3))
+  reparsed   : ok
 
 ===============================================================
 ```
